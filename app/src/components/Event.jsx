@@ -1,10 +1,21 @@
 import React from 'react';
+import { Switch, Route, Link } from 'react-router-dom';
 import './Event.css';
 
 import EventDetails from './EventDetails';
 import EventDiscussion from './EventDiscussion';
 
 const Event = (props) => {
+
+  // this should be handled in the state!!
+  const handleTabClick = (e) => {
+    const tabs = document.querySelectorAll('.card-header-tabs > li > a');
+    tabs.forEach( (tab) => {
+      tab.classList.remove('active')
+    });
+    e.target.classList.add('active');
+  };
+
   return (
     [
     <div className="jumbotron jumbotron-fluid">
@@ -28,21 +39,21 @@ const Event = (props) => {
             <div className="card-header">
               <ul className="nav nav-tabs card-header-tabs">
                 <li className="nav-item">
-                  <a className="nav-link active" href="#">Details</a>
+                  <Link className="nav-link active" to="/events/1/details" onClick={ handleTabClick }>Details</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Discussion</a>
+                  <Link className="nav-link" to="/events/1/discussion" onClick={ handleTabClick }>Discussion</Link>
                 </li>
                 <li className="nav-item">
-                  <a className="nav-link" href="#">Music</a>
+                  <a className="nav-link" href="/events/1/music" onClick={ handleTabClick }>Music</a>
                 </li>
               </ul>
             </div>
             <div className="card-body">
-
-              {<EventDetails />}
-              <EventDiscussion />
-
+              <Switch>
+                <Route path='/events/:id/details' component={EventDetails} />
+                <Route path='/events/:id/discussion' component={EventDiscussion} />
+              </Switch>
             </div>
           </div>
         </div>

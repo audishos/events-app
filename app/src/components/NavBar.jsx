@@ -5,7 +5,7 @@ const NavBar = (props) => {
     <nav className="navbar navbar-expand navbar-dark bg-dark">
       <a className="navbar-brand" href="#">
         <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
-        Bootstrap
+        Eventer
       </a>
       <div className="collapse navbar-collapse" id="navbarNav">
         <ul className="navbar-nav ml-auto">
