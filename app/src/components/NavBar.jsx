@@ -2,21 +2,23 @@ import React from 'react';
 
 const NavBar = (props) => {
   return (
-    <nav className="navbar is-fixed-top" role="navigation" aria-label="main navigation">
-      <div className="navbar-brand">
-        <a className="navbar-item" href="#">
-          <img src="https://bulma.io/images/bulma-logo.png" alt="Bulma: a modern CSS framework based on Flexbox" width="112" height="28" />
-        </a>
-
-        <button className="button navbar-burger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-      </div>
-      <div className="navbar-end">
-        <a href="#" className="navbar-item">Events</a>
-        <a href="#" className="navbar-item">Create</a>
+    <nav className="navbar navbar-expand navbar-dark bg-dark">
+      <a className="navbar-brand" href="#">
+        <img src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" width="30" height="30" className="d-inline-block align-top" alt="" />
+        Bootstrap
+      </a>
+      <div className="collapse navbar-collapse" id="navbarNav">
+        <ul className="navbar-nav ml-auto">
+          <li className="nav-item active">
+            <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">Events</a>
+          </li>
+          <li className="nav-item">
+            <a className="nav-link" href="#">Create</a>
+          </li>
+        </ul>
       </div>
     </nav>
   );

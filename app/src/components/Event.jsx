@@ -1,22 +1,27 @@
 import React from 'react';
+import './Event.css';
+
+import EventDetails from './EventDetails';
 
 const Event = (props) => {
   return (
-    <section className="hero is-medium is-primary">
-      <div className="container has-text-centered">
-        <div className="columns">
-          <div className="column is-one-third">
-            <figure className="image">
-              <img src="https://i.ticketweb.com/i/00/07/29/33/19_Original.jpg?v=4" />
-            </figure>
+    [
+    <div className="jumbotron jumbotron-fluid">
+      <div className="container">
+        <div className="row">
+          <div className="col-4">
+            <img className="img-thumbnail" src="https://i.ticketweb.com/i/00/07/29/33/19_Original.jpg?v=4" />
           </div>
-          <div className="hero-body">
-            <h1 className="title">Markus Schulz & Cosmic Gate</h1>
-            <h2 className="subtitle">Rebel</h2>
+          <div className="col">
+            <h1 className="display-3">Markus Schulz & Cosmic Gate</h1>
+            <p className="lead">Rebel</p>
           </div>
         </div>
       </div>
-    </section>
+    </div>,
+
+    <EventDetails />
+    ]
   )
 }
 
