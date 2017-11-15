@@ -8,18 +8,22 @@ module.exports = (db) => {
 
     createEvent: (event) => {
       return new Promise( (resolve, reject) => {
-        const newEvent = new Event();
-        console.log(newEvent);
+        const newEvent = new Event(event);
         newEvent.save()
           .then( (res) => {
             resolve(res);
           })
           .catch( (err) => {
-            reject(err);
+            switch(err.name) {
+              case 'ValidationError':
+                reject({ code: 400, message: err.message });
+                break;
+              default:
+                reject({ code: 500, message: err.message });
+                break;
+            }
           })
       });
     }
-
   }
-
 }

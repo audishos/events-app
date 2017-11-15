@@ -8,14 +8,22 @@ module.exports = (DataHelpers) => {
   });
 
   router.post('/', (req, res) => {
-    const newEvent = { name: 'This is a test event!!' };
+    const newEvent = {
+      name: req.body.name,
+      description: req.body.description,
+      dateTime: req.body.dateTime,
+      venue: req.body.venue,
+      posterImage: req.body.posterImage,
+      artists: req.body.artists,
+      mediaLinks: req.body.mediaLinks
+    };
 
     DataHelpers.createEvent(newEvent)
       .then( (response) => {
-        res.json(response);
+        res.status(201).json(response);
       })
       .catch( (err) => {
-        res.json(err);
+        res.status(err.code).json(err.message);
       })
   });
 
