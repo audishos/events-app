@@ -9,6 +9,19 @@ var index = require('./routes/index');
 var users = require('./routes/users');
 var events = require('./routes/api/v1/events');
 
+const mongoose = require('mongoose');
+const Event = require('./models/Event');
+const User = require('./models/User');
+const Attendee = require('./models/Attendee');
+mongoose.connect('mongodb://localhost/events', { useMongoClient: true });
+
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', () => {
+  console.log('Connecting to mongoDB');
+  Event;
+});
+
 var app = express();
 
 // view engine setup
