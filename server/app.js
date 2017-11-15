@@ -5,22 +5,22 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
-var users = require('./routes/users');
-var events = require('./routes/api/v1/events');
-
 const mongoose = require('mongoose');
-const Event = require('./models/Event');
-const User = require('./models/User');
-const Attendee = require('./models/Attendee');
 mongoose.connect('mongodb://localhost/events', { useMongoClient: true });
+mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', () => {
-  console.log('Connecting to mongoDB');
-  Event;
+  console.log('Connected to mongoDB');
 });
+
+const DataHelpers = require('./lib/data-helpers')(db);
+// console.log(DataHelpers);
+
+var index = require('./routes/index');
+var users = require('./routes/users');
+var events = require('./routes/api/v1/events')(DataHelpers);
 
 var app = express();
 
