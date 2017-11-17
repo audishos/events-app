@@ -27,7 +27,7 @@ module.exports = (db) => {
           .catch( (err) => {
             reject(err);
           });
-      })
+      });
     },
 
     createEvent: (event) => {
@@ -46,7 +46,44 @@ module.exports = (db) => {
                 reject({ code: 500, message: err.message });
                 break;
             }
+          });
+      });
+    },
+
+    addComment: (eventId, comment) => {
+      return new Promise( (resolve, reject) => {
+        Event.findOne({ _id: eventId })
+          .then( (event) => {
+            event.discussion.push(comment);
+            return(event);
           })
+          .then( (event) => {
+            event.save()
+              .then( (res) => {
+                resolve(res);
+                return;
+              })
+              .catch( (err) => {
+                switch(err.name) {
+                  case 'ValidationError':
+                    reject({ code: 400, message: err.message });
+                    break;
+                  default:
+                    reject({ code: 500, message: err.message });
+                    break;
+                }
+              });
+          })
+          .catch( (err) => {
+            switch(err.name) {
+              case 'ValidationError':
+                reject({ code: 400, message: err.message });
+                break;
+              default:
+                reject({ code: 500, message: err.message });
+                break;
+            }
+          });
       });
     }
   }

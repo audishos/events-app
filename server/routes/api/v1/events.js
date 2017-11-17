@@ -43,6 +43,22 @@ module.exports = (DataHelpers) => {
       });
   });
 
+  router.post('/:id/comments', (req, res) => {
+    const newComment = {
+      _userId: req.body.userId, // will come from login session later
+      comment: req.body.comment,
+      _parentCommentId: req.body.parentCommentId
+    }
+
+    DataHelpers.addComment(req.params.id, newComment)
+      .then( (response) => {
+        res.status(200).json(response);
+      })
+      .catch( (err) => {
+        res.status(err.code).json(err.message);
+      });
+  });
+
   return router;
 
 }
