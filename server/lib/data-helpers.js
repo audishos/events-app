@@ -1,6 +1,7 @@
 const Event = require('../models/Event');
 const User = require('../models/User');
 const Attendee = require('../models/Attendee');
+const httpResponseHelper = require('./http-response-helper');
 
 module.exports = (db) => {
 
@@ -38,14 +39,7 @@ module.exports = (db) => {
             resolve(res);
           })
           .catch( (err) => {
-            switch(err.name) {
-              case 'ValidationError':
-                reject({ code: 400, message: err.message });
-                break;
-              default:
-                reject({ code: 500, message: err.message });
-                break;
-            }
+            reject(httpResponseHelper(err));
           });
       });
     },
@@ -64,25 +58,11 @@ module.exports = (db) => {
                 return;
               })
               .catch( (err) => {
-                switch(err.name) {
-                  case 'ValidationError':
-                    reject({ code: 400, message: err.message });
-                    break;
-                  default:
-                    reject({ code: 500, message: err.message });
-                    break;
-                }
+                reject(httpResponseHelper(err));
               });
           })
           .catch( (err) => {
-            switch(err.name) {
-              case 'ValidationError':
-                reject({ code: 400, message: err.message });
-                break;
-              default:
-                reject({ code: 500, message: err.message });
-                break;
-            }
+            reject(httpResponseHelper(err));
           });
       });
     }
