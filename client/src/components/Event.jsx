@@ -23,7 +23,7 @@ class Event extends Component {
   };
 
   render() {
-    const { name, artists, description, dateTime, location, posterImage } = this.props;
+    const { name, description, posterImage } = this.props;
 
     return (
       [
@@ -75,10 +75,12 @@ class Event extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    ...state._event
-  }
+    name: state._event.name,
+    description: state._event.description,
+    posterImage: state._event.posterImage
+  };
 }
 
-const ConnectedEvent = connect(mapStateToProps)(Event)
+const ConnectedEvent = connect(mapStateToProps)(Event);
 
 export default ConnectedEvent;

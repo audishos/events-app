@@ -1,13 +1,13 @@
-import axios from 'axios'
+import axios from 'axios';
 
 /*
 This is the base API access code. Everything here deals with ALL requests, no matter the endpoint.
 You should add here all basic information about your server, including basic app authentication (headers, tokens, etc.)
 */
 
-const API_HOST = process.env.API_HOST || 'http://localhost:3001'
-const API_NAMESPACE = process.env.API_NAMESPACE || '/api/v1'
-const BASEURL = `${API_HOST}${API_NAMESPACE}`
+const API_HOST = process.env.API_HOST || 'http://localhost:3001';
+const API_NAMESPACE = process.env.API_NAMESPACE || '/api/v1';
+const BASEURL = `${API_HOST}${API_NAMESPACE}`;
 
 /*
 Create a configured axios instance.
@@ -19,7 +19,7 @@ const server = axios.create({
   headers: {
     'Content-Type': 'application/json'
   }
-})
+});
 
 
 /*
@@ -60,6 +60,6 @@ const api = {
   put: put,
   patch: patch,
   delete: del
-}
+};
 
-export default api
+export default api;
