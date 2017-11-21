@@ -4,7 +4,9 @@ import { connect } from 'react-redux';
 import './EventDetails.css';
 
 const EventDetails = (props) => {
-  const { artists, dateTime, venue } = props;
+  let { artists, dateTime, venue } = props;
+  dateTime = new Date(dateTime);
+
   return (
     <ul class="list-group">
       <li class="list-group-item">
@@ -13,11 +15,11 @@ const EventDetails = (props) => {
       </li>
       <li class="list-group-item">
         <i class="material-icons">date_range</i>
-        {dateTime && new Date(dateTime).toLocaleDateString()}
+        {dateTime && dateTime.toDateString()}
       </li>
       <li class="list-group-item">
         <i class="material-icons">access_time</i>
-        {dateTime && new Date(dateTime).toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric' })}
+        {dateTime && dateTime.toLocaleTimeString(undefined, { hour: 'numeric', minute: 'numeric' })}
       </li>
       <li class="list-group-item">
         <i class="material-icons">location_on</i>
