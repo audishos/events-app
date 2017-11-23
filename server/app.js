@@ -7,7 +7,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/events', { useMongoClient: true });
+mongoose.connect(process.env.DB_HOST || 'mongodb://localhost/events', { useMongoClient: true });
 mongoose.Promise = global.Promise;
 
 const db = mongoose.connection;
