@@ -24,6 +24,7 @@ class Event extends Component {
 
   render() {
     const { name, description, posterImage } = this.props;
+    const eventId = this.props.match.params.id;
 
     return (
       [
@@ -31,7 +32,7 @@ class Event extends Component {
         <div className="container">
           <div className="row">
             <div className="col-4">
-              <img className="img-thumbnail" src={posterImage} />
+              <img className="img-thumbnail" src={posterImage} alt='poster' />
             </div>
             <div className="col">
               <h1>{name}</h1>
@@ -48,13 +49,13 @@ class Event extends Component {
               <div className="card-header">
                 <ul className="nav nav-tabs card-header-tabs">
                   <li className="nav-item">
-                    <Link className="nav-link active" to="/events/1/details" onClick={ this.handleTabClick }>Details</Link>
+                    <Link className="nav-link active" to={`/events/${eventId}/details`} onClick={ this.handleTabClick }>Details</Link>
                   </li>
                   <li className="nav-item">
-                    <Link className="nav-link" to="/events/1/discussion" onClick={ this.handleTabClick }>Discussion</Link>
+                    <Link className="nav-link" to={`/events/${eventId}/discussion`} onClick={ this.handleTabClick }>Discussion</Link>
                   </li>
                   <li className="nav-item">
-                    <a className="nav-link" href="/events/1/music" onClick={ this.handleTabClick }>Music</a>
+                    <Link className="nav-link" to={`/events/${eventId}/music`} onClick={ this.handleTabClick }>Music</Link>
                   </li>
                 </ul>
               </div>
