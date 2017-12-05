@@ -18,3 +18,21 @@ export const loadEventActionCreator = (id) => {
     }
   }
 }
+
+export const submitCommentActionCreator = (id, comment) => {
+  const eventCommentStore = Resource(`events/${id}/comments`);
+
+  return {
+    types: ['SUBMIT_COMMENT_REQUEST', 'SUBMIT_COMMENT_SUCCESS', 'SUBMIT_COMMENT_FAILURE'],
+    promise: () => {
+      return new Promise((resolve, reject) => {
+        eventCommentStore.create({
+          userId: '5a16f9ff6cd7602b7e0972d9',
+          comment: comment
+        })
+          .then( res => resolve(res.data))
+          .catch( err => reject(err));
+      });
+    }
+  }
+}
